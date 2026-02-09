@@ -1,18 +1,34 @@
 from Entities.Position import Position
 from Entities.Degree import Degree
+from Entities.Status import Status
 
-class Drone (Position , Degree):
+class Drone (Position , Degree , Status):
     def __init__(self , ID : int  =0  , name : str= ""  , ):
 
         self.__Id = ID
         self.__name = name
         self.__leader = False
-        self.__battery = 0
+        self.__battery = 100
         self.__taskAssigned = False
         self.posX = 0
         self.posY = 0
+        self.taskStatus = " "
         
+    @property 
+    def posY(self):
+        return self.posY
     
+    @posY.setter
+    def posY(self ,x :int):
+        self.posY = x
+        
+    @property 
+    def posX(self):
+        return self.posX
+    
+    @posX.setter
+    def posX(self ,x :int):
+        self.posX = x
     @property 
     def isLeader(self):
         return self.__leader
@@ -22,12 +38,12 @@ class Drone (Position , Degree):
         self.__leader= leader
     
     @property
-    def istaskAssigned(self ):
+    def isTaskAssigned(self ):
         return self.__taskAssigned 
 
 
-    @istaskAssigned.setter
-    def istaskAssigned(self , assign : bool):
+    @isTaskAssigned.setter
+    def isTaskAssigned(self , assign : bool):
         self.__taskAssigned = assign
 
 
