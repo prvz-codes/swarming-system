@@ -1,5 +1,5 @@
 from Entities.Drone import Drone
-# from Services.ProgressTracking import ProgressTracking
+from Services.LeaderDrone import LeaderDrone
 # from Services.BatteryTracking import BatteryTracking
 class SwarmFormation():
     
@@ -9,19 +9,18 @@ class SwarmFormation():
         
 
     
-    def formation(self ,drones : list [Drone] ,   leaderIdx : int ,  formationName : str ):
+    def formation(self ,drones : list [Drone] ,   leaderIdx : int ,  formationName : str , leadDrone : LeaderDrone ):
         
-        
-        lead = drones.pop(leaderIdx)
+        leadDrone.chooseLeader(drones , leaderIdx)
+        # lead = leadDrone.lead
 
-        noOfWorkerDrones = len(drones)
+        noOfWorkerDrones = leadDrone.myWorkerDrones
 
 
         half  = noOfWorkerDrones % 2
         posVal  = 0
         
-        lead.posX = lead.posY = 0
-        lead.isLeader = True
+       
         for i in range (0 , noOfWorkerDrones):
             drones[i].taskStatus = "assigned "
 

@@ -1,6 +1,23 @@
-# from Entities.Drone import Drone
+from Entities.Drone import Drone
 class LeaderDrone:
     def __init__(self) -> None:
-        pass
-    # def assignLeader(self , drones : list[Drone]):
+        self.lead : Drone 
+        self.workerDrones :int
         
+
+    # def assignLeader(self , drones : list[Drone]):
+    def chooseLeader(self ,  drones : list[Drone] , leaderIdx : int ,  ):
+        self.lead   = drones.pop(leaderIdx)
+
+        self.workerDrones = len(drones)
+
+        self.lead .posX = self.lead .posY = 0
+        self.lead .isLeader = True
+    @property
+    def myLead(self):
+        return self.lead
+    @property
+    def myWorkerDrones(self):
+        return self.workerDrones
+    
+    
