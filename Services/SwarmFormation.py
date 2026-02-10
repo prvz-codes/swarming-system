@@ -1,6 +1,6 @@
 from Entities.Drone import Drone
 from Services.LeaderDrone import LeaderDrone
-# from Services.BatteryTracking import BatteryTracking
+# from Services.StatusUpdation import StatusUpdation
 class SwarmFormation():
     
     def __init__(self , gap : int):
@@ -9,7 +9,7 @@ class SwarmFormation():
         
 
     
-    def formation(self ,drones : list [Drone] ,   leaderIdx : int ,  formationName : str , leadDrone : LeaderDrone ):
+    def formation(self ,drones : list [Drone] ,   leaderIdx : int ,  formationName : list[str] , leadDrone : LeaderDrone ):
         
         leadDrone.chooseLeader(drones , leaderIdx)
         # lead = leadDrone.lead
@@ -23,37 +23,35 @@ class SwarmFormation():
        
         for i in range (0 , noOfWorkerDrones):
             drones[i].taskStatus = "assigned "
-
-        if(formationName is "Line" or  "Column"):
-            for i in range(0 , half):
-                if(formationName is "Line"):
+        for i in range (0 , len(formationName)):
+            if(formationName[i] is "Line" or  "Column"):
+                for i in range(0 , half):
+                    if(formationName[i] is "Line"):
+                      
                     # trackTask.tracking(drones[i])
-                    drones[i].degreeY = posVal - 1
+                        drones[i].degreeY = posVal - 1
                     # trackBattery.updateBattery(drones[i])
                     
-                elif(formationName is "Column"):
-                    drones[i].degreeX = posVal - 1
-                    # trackTask.tracking(drones[i])
-                    # trackBattery.updateBattery(drones[i])
+                    elif(formationName[i] is "Column"):
+                        drones[i].degreeX = posVal - 1
+                        # trackTask.tracking(drones[i])
+                        # trackBattery.updateBattery(drones[i])
 
-                    
-
-
-            for i in range(half , noOfWorkerDrones):
+                for i in range(half , noOfWorkerDrones):
 
                 # drones[half].isTaskAssigned = True
-                if(formationName is "Line"):
-                    drones[half].degreeX = i+1
-                    # trackTask.tracking(drones[i])
-                    # trackBattery.updateBattery(drones[i])
-                elif(formationName is "Column"):
-                    drones[half].degreeX = i+1
-                    # trackTask.tracking(drones[i])
-                    # trackBattery.updateBattery(drones[i])
-                # drones[i].taskStatus = "completed"
-        if(formationName is "Square" or  "Rectangle" or "Grid"):
-            pass
-        if(formationName is "Diamond"):
-            pass
+                    if(formationName[i] is "Line"):
+                        drones[half].degreeX = i+1
+                        # trackTask.tracking(drones[i])
+                        # trackBattery.updateBattery(drones[i])
+                    elif(formationName[i] is "Column"):
+                        drones[half].degreeX = i+1
+                        # trackTask.tracking(drones[i])
+                        # trackBattery.updateBattery(drones[i])
+                    # drones[i].taskStatus = "completed"
+            if(formationName[i] is "Square" or  "Rectangle" or "Grid"):
+                pass
+            if(formationName[i] is "Diamond"):
+                pass
             
                     

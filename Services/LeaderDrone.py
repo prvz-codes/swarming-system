@@ -10,14 +10,12 @@ class LeaderDrone:
         self.lead   = drones.pop(leaderIdx)
 
         self.workerDrones = len(drones)
+        self.lead.posX = self.lead.posY = 0
+        self.lead.isLeader = True
 
-        self.lead .posX = self.lead .posY = 0
-        self.lead .isLeader = True
     @property
     def myLead(self):
         return self.lead
     @property
     def myWorkerDrones(self):
         return self.workerDrones
-    
-    
