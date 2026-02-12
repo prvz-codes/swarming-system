@@ -5,34 +5,38 @@ from Entities.Status import Status
 
 # from Entities.Status import Status
 
-class Drone (Position , Degree , Mission ,Status ):
-    def __init__(self , ID : int  =0  , name : str= ""  ,  ):
+class Drone (Position , Degree , Mission ,Status ): 
+    def __init__(self , ID : int   , name : str , poX : float , posY : float , mId : int , degX : int  , degY : int):
+
+        Position.__init__( self, poX ,posY)
+        Mission.__init__(self , 1)
+        Degree.__init__(self ,0 ,0)
+        Status.__init__(self)
 
         self.__Id = ID
-        self.__name = name
+        self.name = name
         self.__leader = False
         self.__battery = 100
         self.__taskAssigned = False
-        self.posX = 0
-        self.posY = 0
+
         self.taskStatus = " "
         
-        
-    @property 
-    def posY(self):
-        return self.posY
     
-    @posY.setter
-    def posY(self ,x :int):
-        self.posY = x
-        
-    @property 
-    def posX(self):
-        return self.posX
+    # @property 
+    # def posY(self):
+    #     return self.posY
     
-    @posX.setter
-    def posX(self ,x :int):
-        self.posX = x
+    # @posY.setter
+    # def posY(self ,x :int):
+    #     self.posY = x
+        
+    # @property 
+    # def posX(self):
+    #     return self.posX
+    
+    # @posX.setter
+    # def posX(self ,x :int):
+    #     self.posX = x
     @property 
     def isLeader(self):
         return self.__leader
@@ -59,11 +63,11 @@ class Drone (Position , Degree , Mission ,Status ):
     def battery(self, value: int):
         self.__battery = value
 
-    @property 
-    def missionID(self):
-        return self.missionId
+    # @property 
+    # def missionID(self):
+    #     return self.missionId
     
-    @missionID.setter
-    def missionID(self ,x :int):
-        self.missionId = x
+    # @missionID.setter
+    # def missionID(self ,x :int):
+    #     self.missionId = x
     

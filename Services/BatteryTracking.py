@@ -12,7 +12,7 @@ class BatteryTracking:
 
     
     def checkBattery(self , drone : Drone ):
-        if(drone.battery < 10 and drone.isTaskAssigned == True):
+        if(drone.battery < 10):
             return True
         else:
             return False

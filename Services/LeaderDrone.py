@@ -6,13 +6,15 @@ class LeaderDrone:
         
 
     # def assignLeader(self , drones : list[Drone]):
-    def chooseLeader(self ,  drones : list[Drone] , leaderIdx : int ,  ):
+    def chooseLeader(self ,  drones : list[Drone] , leaderIdx : int   ):
         self.lead   = drones.pop(leaderIdx)
 
         self.workerDrones = len(drones)
         self.lead.posX = self.lead.posY = 0
         self.lead.isLeader = True
-
+    @property
+    def show(self):
+        print(self.lead.name,"is Swarm's leader drone , co-ordinates (" , self.lead.posX , " , " ,self.lead.posY,")")
     @property
     def myLead(self):
         return self.lead
