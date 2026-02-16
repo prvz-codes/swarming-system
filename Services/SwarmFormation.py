@@ -38,12 +38,13 @@ class SwarmFormation():
         # else:
         #      print("enter valid side to form ")
     # def stateChange()
-    def takeOff(self , drones: list[Drone] , workers:int , xAxis:int):
+    def takeOff(self , drones: list[Drone] , workers:int , yAxis:int ):
             for i in range(0 , workers):
                 drones[i].state = "taking off..."
                 print(drones[i].state)
                 time.sleep(1)
-                drones[i].posY+=xAxis
+                drones[i].posY+=yAxis
+                
 
     def moving(self , drones: list[Drone] , workers:int , xAxis:int , yAxis : int):
         print("moving")
@@ -58,11 +59,15 @@ class SwarmFormation():
 
     def landing(self , drones: list[Drone] , workers:int ):
         time.sleep(1)
-
+        
+        print("Landing")
         for i in range(0 , workers):
                 drones[i].state = "Landing..."
+                time.sleep(0.3)
+                print(".")
+                
                 drones[i].posX = drones[i].posY = 0
-    
+        print("SWARM LANDED")
     def attacking(self ,drones: list[Drone] , workers:int , xAxis:int , yAxis : int , leadDrone : Drone ):
         # time.sleep(1)
         self.leader.state =  "leader In survelence..."
@@ -101,12 +106,14 @@ class SwarmFormation():
                 drones[i].posX = xAxis
                 drones[i].posY = yAxis
         print("attacked target ", xAxis ,yAxis ,"successfully !!!!")
+    
     def perform(self , drones: list[Drone] , leaderIdx : int , leadDrone : LeaderDrone , performName : str , xAxis : int , yAxis :int):
             leadDrone.chooseLeader(drones , leaderIdx)
             self.leader = leadDrone.lead
+            print(len(drones))
         # noOfWorkerDrones = leadDrone.myWorkerDrones
             # if performName.lower() in ["move" or "takeoff" or "land" or  "drop" or "attack" ]:
-            drones.insert(leaderIdx , leadDrone.myLead)
+            drones.append(  leadDrone.myLead)
            
             if performName.lower() in "takeoff":
                 self.takeOff(drones , len(drones) , xAxis )

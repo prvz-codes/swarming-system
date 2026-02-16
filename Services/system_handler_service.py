@@ -15,7 +15,7 @@ class SystemHandler():
         self.status = status
         self.leadDrone = leadDrone
   
-    def operation(self ,   drones  : list[Drone]  ,     tasks : list[str]):
+    def operation(self ,   drones  : list[Drone]):
         
         for i in range(len(drones) -1, -1 , -1):
             
@@ -29,6 +29,5 @@ class SystemHandler():
            
             else:
                 StatusUpdation.setStatus(drones[i] , "active")
-        # self.swarm.formation(drones , 1 , tasks , self.leadDrone)
-        self.swarm.perform(drones , 1 , self.leadDrone , "drop" , 5 , 6)
+        
         
