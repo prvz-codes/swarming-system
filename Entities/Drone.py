@@ -6,14 +6,14 @@ from Entities.Status import Status
 # from Entities.Status import Status
 
 class Drone (Position , Degree , Mission ,Status ): 
-    def __init__(self , ID : int   , name : str , poX : float , posY : float , mId : int , degX : int  , degY : int):
+    def __init__(self , ID : int   , name :str):
 
-        Position.__init__( self, poX ,posY)
+        Position.__init__( self, 0 ,0)
         Mission.__init__(self , 1)
         Degree.__init__(self ,0 ,0)
         Status.__init__(self)
 
-        self.__Id = ID
+        self.id = ID
         self.name = name
         self.__leader = False
         self.__battery = 100

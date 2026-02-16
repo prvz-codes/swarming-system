@@ -1,12 +1,13 @@
 from Entities.Drone import Drone
 from Services.LeaderDrone import LeaderDrone
+import time
 # from Services.StatusUpdation import StatusUpdation
 class SwarmFormation():
     
     def __init__(self , gap : int):
-        self.__leader = None
+        self.leader :Drone
         self.gap=gap
-        
+    
 
     def formSide(self , drones : list [Drone]  , half : int , count : int , msg : str):
         if(msg == "upper" or "right"):
@@ -34,13 +35,103 @@ class SwarmFormation():
         #                      posYval = posYval - 1
         #                 drones[z].posX = drones[z].posY = 0
 
-        else:
-             print("enter valid side to form ")
+        # else:
+        #      print("enter valid side to form ")
+    # def stateChange()
+    def takeOff(self , drones: list[Drone] , workers:int , xAxis:int):
+            for i in range(0 , workers):
+                drones[i].state = "taking off..."
+                print(drones[i].state)
+                time.sleep(1)
+                drones[i].posY+=xAxis
+
+    def moving(self , drones: list[Drone] , workers:int , xAxis:int , yAxis : int):
+        print("moving")
+        
+        for i in range(0 , workers):
+                drones[i].state = "Changing position..."
+                if( i == 0):
+                    print(drones[i].state)
+                time.sleep(1)
+                drones[i].posX+=xAxis
+                drones[i].posY+=yAxis
+
+    def landing(self , drones: list[Drone] , workers:int ):
+        time.sleep(1)
+
+        for i in range(0 , workers):
+                drones[i].state = "Landing..."
+                drones[i].posX = drones[i].posY = 0
     
+    def attacking(self ,drones: list[Drone] , workers:int , xAxis:int , yAxis : int , leadDrone : Drone ):
+        # time.sleep(1)
+        self.leader.state =  "leader In survelence..."
+        print(self.leader.state)
+        time.sleep(1)
+        actualX = self.leader.posX
+        actualY= self.leader.posY
+        print("enemy point  " ,xAxis , " , " ,yAxis)
+
+
+        for i in range(1 , 5):
+             if(i==1):
+                  self.leader.posX = xAxis+1
+                  self.leader.posY = yAxis
+                  print("survelence pos  :" ,i , " " ,self.leader.posX , " , " , self.leader.posY)
+             if(i==2):
+                  self.leader.posY = yAxis+1
+                  self.leader.posX = xAxis
+                  print("survelence pos  :" ,i , " " ,self.leader.posX , " , " , self.leader.posY)
+             if(i==3):
+                  self.leader.posX = xAxis-1
+                  self.leader.posY = yAxis
+                  print("survelence pos  :" ,i , " " ,self.leader.posX , " , " , self.leader.posY)
+             if(i==4):
+                  self.leader.posY = yAxis-1
+                  self.leader.posX = xAxis
+                  print("survelence pos  :" ,i , " " ,self.leader.posX , " , " , self.leader.posY)
+        self.leader.posX = actualX 
+        self.leader.posY=actualY
+
+        for i in range(0 , workers):                
+                drones[i].state = "attacking..."
+                
+                print(drones[i].state)
+                time.sleep(1)
+                drones[i].posX = xAxis
+                drones[i].posY = yAxis
+        print("attacked target ", xAxis ,yAxis ,"successfully !!!!")
+    def perform(self , drones: list[Drone] , leaderIdx : int , leadDrone : LeaderDrone , performName : str , xAxis : int , yAxis :int):
+            leadDrone.chooseLeader(drones , leaderIdx)
+            self.leader = leadDrone.lead
+        # noOfWorkerDrones = leadDrone.myWorkerDrones
+            # if performName.lower() in ["move" or "takeoff" or "land" or  "drop" or "attack" ]:
+            drones.insert(leaderIdx , leadDrone.myLead)
+           
+            if performName.lower() in "takeoff":
+                self.takeOff(drones , len(drones) , xAxis )
+
+            if performName.lower() in "move" :
+            #    print("hellp")
+               self.moving(drones , len(drones)  , xAxis , yAxis)
+               for i in range(0 , len(drones)):
+                    print("drones co-ordinates", i , " " , drones[i].posX , " " , drones[i].posY)
+            if performName.lower() in "land":
+                self.landing(drones , len(drones))
+            
+            if performName.lower() == "drop":
+                print("hell")
+                self.attacking(drones , len(drones)  , xAxis , yAxis , self.leader)
+                pass
+            if performName.lower() in "takepic":
+                pass
+        
+        
+            
     def formation(self ,drones : list [Drone] ,   leaderIdx : int ,  formationName : list[str] , leadDrone : LeaderDrone ):
         
         leadDrone.chooseLeader(drones , leaderIdx)
-        # lead = leadDrone.lead
+        self.leader = leadDrone.lead
 
         noOfWorkerDrones : int = leadDrone.myWorkerDrones
 
@@ -94,9 +185,10 @@ class SwarmFormation():
                         
                 
                
+                    
             if(formationName[i] == "Square" or  "Rectangle" or "Grid"):
                 pass
             if(formationName[i] == "Diamond"):
                 pass
+            
         
-                    
