@@ -2,4 +2,4 @@
 class User:
     def __init__(self , name:str , password : int):
         self.name = name
-        self.password : int = password
+        self.password  = password

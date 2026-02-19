@@ -22,10 +22,10 @@ class Authenticater(Exception):
                 if(name == self.myDb.userList[i].name ):
                     raise Exception("ALREADY EXISTS!!")
                     return  
-           
-            users = User(name , password)
-            self.myDb.userList.append(users)
-            self.myDb.save()
+           else:
+                self.myDb.userList.append(User(name , password))
+                self.myDb.save()
+            
         
             
         
