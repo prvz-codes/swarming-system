@@ -2,5 +2,18 @@
     {
         "name": "ali",
         "password": 1234
+    },
+    {
+        "name": "shahid",
+        "password": 4321
+    },
+    {
+        "name": "Asad",
+        "password": 4432
+    },
+    
+    {
+        "name": "Subhan",
+        "password": 2312
     }
 ]

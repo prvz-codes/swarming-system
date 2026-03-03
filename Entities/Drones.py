@@ -2,7 +2,6 @@ from Entities.Mission import Mission
 from Entities.Position import Position
 class Drones(Mission , Position):
     def __init__(self, name : str , id : int):
-        # Mission.__init__(self , 0)
         Position.__init__(self , 0 , 0)
         Mission.__init__(self , 0)
         self.name = name

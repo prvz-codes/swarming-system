@@ -13,6 +13,7 @@ class DbContext:
     def __init__(self ):
         self.userList: list[User]=[]
         self.dronesList:list[Drones]=[]
+        
         user_data : list[dict[str , str ]]
         drone_data : list[dict[str , str ]]
         if os.path.exists(self.UserPath):
@@ -35,6 +36,7 @@ class DbContext:
                 self.dronesList.append(Drones(i["name"] , int(i["id"])))  
         else:
             drone_data= []  
+    
     def save(self):
         data : list[dict[str , int | str]] = []
 

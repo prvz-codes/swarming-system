@@ -1,12 +1,13 @@
 # from Entities.User import User
 from Services.authenticater_service import Authenticater
 from Services.drone_controller_service import DroneController
-
+from Services.mission_controller_service import MissionController
+# from Entities.Mission import Mission
 import time
 class CLI:
-    def __init__(self   , auth:Authenticater , droneControl : DroneController):
-      
-         
+    def __init__(self   , auth:Authenticater , droneControl : DroneController , missionControl : MissionController  ):
+        #  self.missionList = missionList
+         self.missionControl = missionControl
          self.auth = auth
          self.droneControl = droneControl
 
@@ -19,7 +20,6 @@ class CLI:
             print("press 3 to exit ")
             inp = input("enter your choice  ")
             if inp == "1":
-                
                 name= input("enter your name ?")
                 password =int(input("enter your password ?"))
                 try :
@@ -55,7 +55,12 @@ class CLI:
                                 print("ERROR :", d_name , e)
                                 time.sleep(1)
                         if inp1 == "2":
-                            pass
+                           
+                            xCordinate = int(input("enter x co-ordinate"))
+                            yCordinate = int(input("enter y co-ordinate"))
+                            taskName = input("enter name of tasks")
+                            self.missionControl.performMissions(xCordinate ,yCordinate,taskName)
+
                         if inp1 == "3":
                             pass
                         if inp1 == "4":
