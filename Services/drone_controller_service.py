@@ -6,6 +6,13 @@ class DroneController:
         self.db =db 
     
     def addDrones(self , name : str , id :int):
+        self.db.dronest.insert_one({"name" : name , 
+              "id"  : id,
+              "x" : 0,
+              "y" : 0,
+              "isLeader" :False
+        })
+        return True
         for i in range( 0 , len(self.db.dronesList)):
                 if(id ==self.db.dronesList[i].id):
                     raise Exception("ALREADY EXISTS!!")

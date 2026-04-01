@@ -1,5 +1,5 @@
 # from Entities.Mission import Mission
-
+# import json
 from data_layer.db_context import DbContext
 import time
 class MissionController:
@@ -8,6 +8,7 @@ class MissionController:
     
     
     def performMissions(self , x : int , y : int , missionName :str):
+            
             if(missionName.lower() == "move"):
                 self.move(x , y)
             elif(missionName.lower() == "landing"):
@@ -27,10 +28,18 @@ class MissionController:
     def formationMission(self  ):
         pass
     def move(self , x :int , y : int , ):
-        for i in range(0 , len(self.db.dronesList)):
-             self.db.dronesList[i].x=x
-             self.db.dronesList[i].y=y
-        
+       
+
+        for h in range(0 ,max(x , y)):
+            tracker :int=  0
+            while(tracker < len(self.db.dronesList)):
+                if(self.db.dronesList[tracker].x < x):
+                    self.db.dronesList[tracker].x+=1
+                if(self.db.dronesList[tracker].y < y):
+                    self.db.dronesList[tracker].y+=1
+                print(self.db.dronesList[tracker].name , " X : " ,  self.db.dronesList[tracker].x , " Y : " ,  self.db.dronesList[tracker].y)
+                tracker +=1
+
     def landing(self):
         for i in range(0 , len(self.db.dronesList)):
              self.db.dronesList[i].x=0
@@ -38,9 +47,10 @@ class MissionController:
     def takeoff(self , y : int):
         for i in range(0 , len(self.db.dronesList)):
              self.db.dronesList[i].y+=y
+             
     def showPos(self):
         for i in range(0 , len(self.db.dronesList)):
-            print(" DRONE {self.db.droneList[i].name}  is AT NOW POS :" ,   self.db.dronesList[i].x ,   self.db.dronesList[i].y)
+            print( self.db.dronesList[i].name  , " is AT NOW POS :" ,   self.db.dronesList[i].x ,   self.db.dronesList[i].y)
     def swarmAround(self ,  x:int  , y : int):
         
 
@@ -54,7 +64,7 @@ class MissionController:
                     self.move(x-1 , y)
                     
                 case 3:
-                    self.move(x+1,y)    
+                    self.move(x+1,y)        
                     
                 case 4:
                     self.move(x , y-1)

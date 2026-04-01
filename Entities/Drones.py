@@ -1,8 +1,9 @@
 from Entities.Mission import Mission
-from Entities.Position import Position
-class Drones(Mission , Position):
+# from Entities.Position import Position
+class Drones(Mission):
     def __init__(self, name : str , id : int):
-        Position.__init__(self , 0 , 0)
+        self.x = 0
+        self.y = 0
         Mission.__init__(self , 0)
         self.name = name
         self.id=id

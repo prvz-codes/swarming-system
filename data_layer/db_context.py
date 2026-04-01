@@ -2,7 +2,7 @@ from Entities.User import User
 from Entities.Drones import Drones
 import json
 import os
-
+from pymongo import MongoClient
 class DbContext:
     
     base_dir = os.path.dirname(__file__)
@@ -11,8 +11,14 @@ class DbContext:
     DronesPath =os.path.join(base_dir ,"drones_data.json") 
 
     def __init__(self ):
+        self.client  = MongoClient("mongodb://localhost:27017/")
+        self.db = self.client["DroneDB"]
+
+        self.dronest= self.db["drone"]
         self.userList: list[User]=[]
         self.dronesList:list[Drones]=[]
+        self.tasksList : list[str] = []
+        self.radarCoordinates : list[int] = []
         
         user_data : list[dict[str , str ]]
         drone_data : list[dict[str , str ]]
@@ -38,6 +44,8 @@ class DbContext:
             drone_data= []  
     
     def save(self):
+
+        
         data : list[dict[str , int | str]] = []
 
         for u in self.userList:
