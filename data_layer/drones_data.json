@@ -1,38 +1,22 @@
 [
     {
-        "name": "Quadcopter X300",
-        "id": 1
+        "name": "Apex390",
+        "id": 1,
+        "status": "Active"
     },
     {
-        "name": "Sky Hawk",
-        "id": 2
+        "name": "Miller567",
+        "id": 2,
+        "status": "Active"
     },
     {
-        "name": "Apex 390 ",
-        "id": 12
+        "name": "Revaz410",
+        "id": 3,
+        "status": "Active"
     },
     {
-        "name": "911 Drone",
-        "id": 11
-    },
-    {
-        "name": "Iran Spy",
-        "id": 122
-    },
-    {
-        "name": "Pkt 2400",
-        "id": 1322
-    },
-    {
-        "name": "Indian 21",
-        "id": 34
-    },
-    {
-        "name": "Russian 2999",
-        "id": 29300
-    },
-    {
-        "name": "North Korea 9999",
-        "id": 200
+        "name": "apex9999",
+        "id": 101,
+        "status": "active"
     }
 ]

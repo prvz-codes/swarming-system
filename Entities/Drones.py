@@ -1,14 +1,15 @@
 from Entities.Mission import Mission
+from .Coordinates import Coordinates
 # from Entities.Position import Position
 class Drones(Mission):
-    def __init__(self, name : str , id : int):
-        self.x = 0
-        self.y = 0
-        Mission.__init__(self , 0)
+    def __init__(self,id : int  ,  status :str , name : str  ):
+        self.x = 0.0
+        self.y = 0.0
         self.name = name
         self.id=id
         self.isLeader=False
         self.battery :int = 100
+        self.status = status
     # @property
     # def Battery(self):
     #     return self.battery

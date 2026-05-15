@@ -1,0 +1,23 @@
+[
+    {
+        "M-name ": "Mission Alpha",
+        "M-id": 1,
+        "description": "First drone mission",
+        "tasks": [
+            {
+                "task_type": "TAKEOFF"
+            },
+            {
+                "task_type": "MOVE",
+                "coordinates": "23.5, 45.2"
+            },
+            {
+                "task_type": "ACTION",
+                "action": "take_photo"
+            },
+            {
+                "task_type": "LAND"
+            }
+        ]
+    }
+]
